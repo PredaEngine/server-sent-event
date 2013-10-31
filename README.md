@@ -13,7 +13,7 @@ evtSource.onmessage = function(e) {
 Source : https://developer.mozilla.org/en-US/docs/Server-sent_events/Using_server-sent_events
 More : http://dev.w3.org/html5/eventsource/
 # PHP
-### In demo_sse.php
+### In ssedemo.php
 ```php
 <?php
 header("Content-Type: text/event-stream");
