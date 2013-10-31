@@ -2,13 +2,15 @@ server-sent-event
 =================
 # JavaScript
 ```javascript
-var source=new EventSource("demo_sse.php");
-source.onmessage=function(event)
-{
-	document.getElementById("result").innerHTML+=event.data + "<br>";
-};
+var evtSource = new EventSource("ssedemo.php");
+evtSource.onmessage = function(e) {
+  var newElement = document.createElement("li");
+  
+  newElement.innerHTML = "message: " + e.data;
+  eventList.appendChild(newElement);
+}
 ```
-Source : http://www.w3schools.com/html/html5_serversentevents.asp
+Source : https://developer.mozilla.org/en-US/docs/Server-sent_events/Using_server-sent_events
 More : http://dev.w3.org/html5/eventsource/
 # PHP
 ### In demo_sse.php
@@ -23,7 +25,7 @@ $event = ServerSentEvent::getInstance();
 $event->process(function($manager){
 	$manager->send(array(
 		'event' => 'ping',
-		'data' => time(),
+		'data' => json_encode(array('time' =>time())),
 		));
 },20);
 ```
