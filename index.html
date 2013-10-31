@@ -32,14 +32,43 @@
       <section>
         <div id="title">
           <h1>Server-sent-event</h1>
-          <p>ServerSentEvent.php is a PHP class that allows you to emit events that can receiving Server-Sent Events in HTML5 (look http://www.w3schools.com/html/html5_serversentevents.asp)</p>
+          <p>ServerSentEvent.php is a PHP class that allows you to emit events that can receiving Server-Sent Events in HTML5</p>
           <hr>
           <span class="credits left">Project maintained by <a href="https://github.com/PredaEngine">PredaEngine</a></span>
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
         </div>
 
         <h1>
-<a name="server-sent-event" class="anchor" href="#server-sent-event"><span class="octicon octicon-link"></span></a>server-sent-event</h1>
+<a name="html5" class="anchor" href="#html5"><span class="octicon octicon-link"></span></a>HTML5</h1>
+
+<p><code>var source=new EventSource("demo_sse.php");
+source.onmessage=function(event)
+{
+    document.getElementById("result").innerHTML+=event.data + "&lt;br&gt;";
+};
+</code></p>
+
+<h1>
+<a name="php" class="anchor" href="#php"><span class="octicon octicon-link"></span></a>PHP</h1>
+
+<h2>
+<a name="in-demo_ssephp" class="anchor" href="#in-demo_ssephp"><span class="octicon octicon-link"></span></a>In demo_sse.php</h2>
+
+<p>`
+&lt;?php
+header("Content-Type: text/event-stream");
+header('Cache-Control: no-cache'); // recommended to prevent caching of event data.</p>
+
+<p>include 'class/ServerSentEvent.php';</p>
+
+<p>$event = ServerSentEvent::getInstance();
+$event-&gt;process(function($manager){
+    $manager-&gt;send(array(
+        'event' =&gt; 'ping',
+        'data' =&gt; ,
+        ));
+},20);
+`</p>
       </section>
 
     </div>
