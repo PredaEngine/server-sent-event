@@ -41,34 +41,33 @@
         <h1>
 <a name="html5" class="anchor" href="#html5"><span class="octicon octicon-link"></span></a>HTML5</h1>
 
-<p><code>var source=new EventSource("demo_sse.php");
+<div class="highlight highlight-html"><pre>var source=new EventSource("demo_sse.php");
 source.onmessage=function(event)
 {
-    document.getElementById("result").innerHTML+=event.data + "&lt;br&gt;";
+    document.getElementById("result").innerHTML+=event.data + "<span class="nt">&lt;br&gt;</span>";
 };
-</code></p>
+</pre></div>
 
 <h1>
 <a name="php" class="anchor" href="#php"><span class="octicon octicon-link"></span></a>PHP</h1>
 
-<h2>
-<a name="in-demo_ssephp" class="anchor" href="#in-demo_ssephp"><span class="octicon octicon-link"></span></a>In demo_sse.php</h2>
+<h3>
+<a name="in-demo_ssephp" class="anchor" href="#in-demo_ssephp"><span class="octicon octicon-link"></span></a>In demo_sse.php</h3>
 
-<p>`
-&lt;?php
-header("Content-Type: text/event-stream");
-header('Cache-Control: no-cache'); // recommended to prevent caching of event data.</p>
+<div class="highlight highlight-php"><pre><span class="o">&lt;?</span><span class="nx">php</span>
+<span class="nx">header</span><span class="p">(</span><span class="s2">"Content-Type: text/event-stream"</span><span class="p">);</span>
+<span class="nx">header</span><span class="p">(</span><span class="s1">'Cache-Control: no-cache'</span><span class="p">);</span> <span class="c1">// recommended to prevent caching of event data.</span>
 
-<p>include 'class/ServerSentEvent.php';</p>
+<span class="k">include</span> <span class="s1">'class/ServerSentEvent.php'</span><span class="p">;</span>
 
-<p>$event = ServerSentEvent::getInstance();
-$event-&gt;process(function($manager){
-    $manager-&gt;send(array(
-        'event' =&gt; 'ping',
-        'data' =&gt; ,
-        ));
-},20);
-`</p>
+<span class="nv">$event</span> <span class="o">=</span> <span class="nx">ServerSentEvent</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
+<span class="nv">$event</span><span class="o">-&gt;</span><span class="na">process</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$manager</span><span class="p">){</span>
+    <span class="nv">$manager</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+        <span class="s1">'event'</span> <span class="o">=&gt;</span> <span class="s1">'ping'</span><span class="p">,</span>
+        <span class="s1">'data'</span> <span class="o">=&gt;</span> <span class="nb">time</span><span class="p">(),</span>
+        <span class="p">));</span>
+<span class="p">},</span><span class="mi">20</span><span class="p">);</span>
+</pre></div>
       </section>
 
     </div>
