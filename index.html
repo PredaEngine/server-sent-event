@@ -39,14 +39,20 @@
         </div>
 
         <h1>
-<a name="html5" class="anchor" href="#html5"><span class="octicon octicon-link"></span></a>HTML5</h1>
+<a name="server-sent-event" class="anchor" href="#server-sent-event"><span class="octicon octicon-link"></span></a>server-sent-event</h1>
 
-<div class="highlight highlight-html"><pre>var source=new EventSource("demo_sse.php");
-source.onmessage=function(event)
-{
-    document.getElementById("result").innerHTML+=event.data + "<span class="nt">&lt;br&gt;</span>";
-};
+<h1>
+<a name="javascript" class="anchor" href="#javascript"><span class="octicon octicon-link"></span></a>JavaScript</h1>
+
+<div class="highlight highlight-javascript"><pre><span class="kd">var</span> <span class="nx">source</span><span class="o">=</span><span class="k">new</span> <span class="nx">EventSource</span><span class="p">(</span><span class="s2">"demo_sse.php"</span><span class="p">);</span>
+<span class="nx">source</span><span class="p">.</span><span class="nx">onmessage</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">"result"</span><span class="p">).</span><span class="nx">innerHTML</span><span class="o">+=</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span> <span class="o">+</span> <span class="s2">"&lt;br&gt;"</span><span class="p">;</span>
+<span class="p">};</span>
 </pre></div>
+
+<p>Source : <a href="http://www.w3schools.com/html/html5_serversentevents.asp">http://www.w3schools.com/html/html5_serversentevents.asp</a>
+More : <a href="http://dev.w3.org/html5/eventsource/">http://dev.w3.org/html5/eventsource/</a></p>
 
 <h1>
 <a name="php" class="anchor" href="#php"><span class="octicon octicon-link"></span></a>PHP</h1>
@@ -58,7 +64,7 @@ source.onmessage=function(event)
 <span class="nx">header</span><span class="p">(</span><span class="s2">"Content-Type: text/event-stream"</span><span class="p">);</span>
 <span class="nx">header</span><span class="p">(</span><span class="s1">'Cache-Control: no-cache'</span><span class="p">);</span> <span class="c1">// recommended to prevent caching of event data.</span>
 
-<span class="k">include</span> <span class="s1">'class/ServerSentEvent.php'</span><span class="p">;</span>
+<span class="k">include</span> <span class="s1">'ServerSentEvent.php'</span><span class="p">;</span>
 
 <span class="nv">$event</span> <span class="o">=</span> <span class="nx">ServerSentEvent</span><span class="o">::</span><span class="na">getInstance</span><span class="p">();</span>
 <span class="nv">$event</span><span class="o">-&gt;</span><span class="na">process</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$manager</span><span class="p">){</span>
@@ -68,6 +74,15 @@ source.onmessage=function(event)
         <span class="p">));</span>
 <span class="p">},</span><span class="mi">20</span><span class="p">);</span>
 </pre></div>
+
+<p>This code will send an event 'ping' to the client with data the current time (time()) every 20 seconds.
+The array passed to the send function can contain three indexes:</p>
+
+<ul>
+<li>id (optional) : the name of the event</li>
+<li>event : The name of the event</li>
+<li>data (array or string) : The data which will be send to the client</li>
+</ul>
       </section>
 
     </div>
